@@ -4,30 +4,11 @@ const auth = require('../middleware/auth');
 const stuffCtrl = require('../controllers/userController');
 
 
-routeur.get('/', (req,res,next) => {
-
-})
-routeur.get('/', (req,res,next) => {
-
-})
-
-routeur.post('/', (req,res,next) => {
-    
-})
-routeur.put('/:id', (req,res,next) => {
-
-})
-routeur.DELETE('/:id', (req,res,next) => {
-
-})
-routeur.post('/:id/like', (req,res,next) => {
-    
-})
-
-routeur.post('/signup', (req,res,next) => {
-
-})
-routeur.post('/login', (req,res,next) => {
-})
+routeur.get('/', auth, stuffCtrl.getThings)
+routeur.get('/', auth, stuffCtrl.getOneThings)
+routeur.post('/',auth, stuffCtrl.createThing);
+routeur.put('/:id',auth, stuffCtrl.modifyThing)
+routeur.DELETE('/:id',auth,stuffCtrl.deleteThing)
+routeur.post('/:id/like',auth,stuffCtrl.like)
 
 module.exports = router;
