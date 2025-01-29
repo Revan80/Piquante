@@ -14,9 +14,9 @@ userSchema.pre('save', async function(next) {
     }
 
     try {
-        const salt = await bcrypt.genSalt(10); // Génère un sel
-        this.password = await bcrypt.hash(this.password, salt); // hache avec le sel une instance deuserSchema
-        next(); // passe au middleware suivant
+        const salt = await bcrypt.genSalt(10); 
+        this.password = await bcrypt.hash(this.password, salt); 
+        next(); 
     } catch (error) {
         next(error); 
     }
