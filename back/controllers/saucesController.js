@@ -89,7 +89,8 @@ exports.modifySauce = (req, res, next) => {
                 }, {
                     name: req.body.name,
                     ingredient: req.body.ingredients,
-                    _id: req.params.id
+                    _id: req.params.id,
+                    imageUrl: req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}` : Sauce.imageUrl,
                 })
                 .then(() => res.status(200).json({
                     message: 'Sauce modifiée'
