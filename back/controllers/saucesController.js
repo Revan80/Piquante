@@ -1,5 +1,6 @@
 const Sauce = require('../models/sauce');
 const fs = require('fs');
+const multer = require('multer');
 
 exports.createSauce = (req, res, next) => {
     let userId = req.auth.userId;
