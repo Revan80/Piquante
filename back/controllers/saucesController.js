@@ -1,6 +1,5 @@
 const Sauce = require('../models/sauce');
 const fs = require('fs');
-const multer = require('multer');
 
 exports.createSauce = (req, res, next) => {
     let userId = req.auth.userId;
@@ -85,13 +84,16 @@ exports.modifySauce = (req, res, next) => {
                     error: "Vous n'êtes pas autorisé à modifier cette sauce !"
                 });
             }
+            let parsedBody = JSON.parse(req.body.sauce); 
             Sauce.updateOne({
                     _id: req.params.id
                 }, {
-                    name: req.body.name,
-                    ingredient: req.body.ingredients,
+                    name: parsedBody.name, 
+                    description : parsedBody.description, 
+                    manufacturer : parsedBody.manufacturer, 
+                    mainPepper : parsedBody.mainPepper, 
                     _id: req.params.id,
-                    imageUrl: req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}` : Sauce.imageUrl,
+                    imageUrl: req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}` : sauce.imageUrl,
                 })
                 .then(() => res.status(200).json({
                     message: 'Sauce modifiée'
